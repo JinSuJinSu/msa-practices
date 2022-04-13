@@ -38,7 +38,7 @@ public class ApiController {
 		// GW 사용
 		// EmaillistVo[] result = restTemplate.getForObject("http://service-emaillist/api?kw="+keyword, EmaillistVo[].class);
 		//
-		EmaillistVo[] result = restTemplate.getForObject("http://34.64.199.56:5555/emaillist/api?kw="+keyword, EmaillistVo[].class);
+		EmaillistVo[] result = restTemplate.getForObject("http://localhost:5555/emaillist/api?kw="+keyword, EmaillistVo[].class);
 		return ResponseEntity
 				.status(HttpStatus.OK)
 				.body(JsonResult.success(Arrays.asList(result)));
@@ -49,7 +49,7 @@ public class ApiController {
 		// GW 사용
 		// EmaillistVo result = restTemplate.postForObject("http://service-emaillist/api", vo, EmaillistVo.class);
 		// 
-		EmaillistVo result = restTemplate.postForObject("http://34.64.199.56:5555/emaillist/api", vo, EmaillistVo.class);
+		EmaillistVo result = restTemplate.postForObject("http://localhost:5555/emaillist/api", vo, EmaillistVo.class);
 		
 		return ResponseEntity
 				.status(HttpStatus.OK)
