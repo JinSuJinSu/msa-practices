@@ -28,10 +28,10 @@ public class SimpleHttpd {
 //    private String storageLocation;
 	
 	//	@Value("${storage.location}")
-		private String storageLocation="C:/mysite-uploads/gallery";
+		private String storageLocation="/mysite-uploads/gallery";
 	
 	//	@Value("${storage.httpd.host}")
-		private String host="localhost";
+		private String host="34.64.199.56";
 	
 	//	@Value("${storage.httpd.port}")
 		private int port=9999;
