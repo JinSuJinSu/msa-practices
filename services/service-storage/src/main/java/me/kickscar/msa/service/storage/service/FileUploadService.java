@@ -13,14 +13,14 @@ import java.util.Calendar;
 @Service
 public class FileUploadService {
 
-	@Value("${storage.location}")
-	private String storageLocation;
+//	@Value("${storage.location}")
+	private String storageLocation="C:/mysite-uploads/gallery";
 
-	@Value("${storage.httpd.host}")
-	private String host;
+//	@Value("${storage.httpd.host}")
+	private String host="localhost";
 
-	@Value("${storage.httpd.port}")
-	private int port;
+//	@Value("${storage.httpd.port}")
+	private int port=9999;
 
 	public String restoreImage(MultipartFile file) throws RuntimeException {
 		try {

@@ -1,6 +1,10 @@
 package me.kickscar.msa.service.storage.httpd;
 
 import lombok.extern.slf4j.Slf4j;
+import me.kickscar.msa.service.storage.exception.GlobalExceptionHandler;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -14,11 +18,23 @@ import java.nio.file.Files;
 @Slf4j
 @Component
 public class SimpleHttpd {
-    @Value("${storage.httpd.port}")
-    private int port;
-
-    @Value("${storage.location}")
-    private String storageLocation;
+	
+	private static final Log LOGGER = LogFactory.getLog(GlobalExceptionHandler.class);
+	
+//    @Value("${storage.httpd.port}")
+//    private int port;
+//
+//    @Value("${storage.location}")
+//    private String storageLocation;
+	
+	//	@Value("${storage.location}")
+		private String storageLocation="C:/mysite-uploads/gallery";
+	
+	//	@Value("${storage.httpd.host}")
+		private String host="localhost";
+	
+	//	@Value("${storage.httpd.port}")
+		private int port=9999;
 
     public void start() {
        ServerSocket serverSocket = null;
@@ -27,14 +43,14 @@ public class SimpleHttpd {
             serverSocket = new ServerSocket();
             serverSocket.bind( new InetSocketAddress("0.0.0.0", port));
 
-            log.info("Simple Httpd: starts... [" + port + "]");
+            LOGGER.info("Simple Httpd: starts... [" + port + "]");
 
             while (true) {
                 Socket socket = serverSocket.accept();
                 new RequestHandler(socket).start();
             }
         } catch (IOException ex) {
-            log.error("Simple Httpd: " + ex.getMessage());
+        	LOGGER.error("Simple Httpd: " + ex.getMessage());
         } finally {
             try {
                 if (serverSocket != null && serverSocket.isClosed() == false) {
@@ -60,7 +76,7 @@ public class SimpleHttpd {
 
                 // logging Remote Host IP Address & Port
                 InetSocketAddress inetSocketAddress = (InetSocketAddress)socket.getRemoteSocketAddress();
-                log.info("Simple Httpd: connected from " + inetSocketAddress.getAddress().getHostAddress() + ":" + inetSocketAddress.getPort());
+                LOGGER.info("Simple Httpd: connected from " + inetSocketAddress.getAddress().getHostAddress() + ":" + inetSocketAddress.getPort());
 
                 String request = null;
                 while(true) {
@@ -89,10 +105,10 @@ public class SimpleHttpd {
                 } else {
                     // methods: POST, PUT, DELETE, HEAD, CONNECT, OPTIONS, ...
                     // Simple Httpd 에서는 무시
-                    log.info("Simple Httpd: 400 Bad Request [" + request + "]");
+                	LOGGER.info("Simple Httpd: 400 Bad Request [" + request + "]");
                 }
             } catch(Exception ex) {
-                log.error("Simple Httpd:" + ex.getMessage());
+            	LOGGER.error("Simple Httpd:" + ex.getMessage());
             } finally {
                 try {
                     if(socket != null && socket.isClosed() == false) {
@@ -123,7 +139,7 @@ public class SimpleHttpd {
         }
 
         private void response404Error(OutputStream os, String url, String protocol)  throws IOException {
-            log.info("Simple Httpd: 404 Not Found [" + url + "]");
+        	LOGGER.info("Simple Httpd: 404 Not Found [" + url + "]");
 
             os.write((protocol + " 404 File Not Found\n").getBytes("UTF-8"));
             os.write(("Content-Type:text/plain; charset=utf-8\n").getBytes(StandardCharsets.UTF_8));

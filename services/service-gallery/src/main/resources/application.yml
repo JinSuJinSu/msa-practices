@@ -15,7 +15,6 @@ spring:
          on-profile: development
       import: optional:configserver:http://localhost:7777
 
-
 ---
 #
 # production configuration
@@ -24,4 +23,4 @@ spring:
    config:
       activate:
          on-profile: production
-      import: optional:configserver:http://192.168.0.51:7777
+      import: optional:configserver:http://34.64.199.56:7777
