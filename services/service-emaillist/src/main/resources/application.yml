@@ -1,0 +1,19 @@
+spring:
+   application:
+      name: service-emaillist
+   profiles:
+      active: development
+
+---      
+spring:
+   config:
+      activate:
+         on-profile: development       
+      import: optional:configserver:http://localhost:7777
+
+---      
+spring:
+   config:
+      activate:
+         on-profile: production       
+      import: optional:configserver:http://192.168.0.51:7777

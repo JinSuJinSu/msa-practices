@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: service-gateway-server
+  profiles:
+    active: development      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+server:
+  port: 5555
+zuul:
+  ignored-services: '*'
+  prefix: ''
+  routes:
+    service-emaillist: /emaillist/**
+    service-guestbook: /guestbook/**
+    service-gallery: /gallery/**
+    service-storage: /storage/**
+
+---
+#
+# development configuration
+#
+spring:
+   profiles: development
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    
+
+---
+#
+# production configuration
+#
+spring:
+   profiles: production
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://192.168.0.51:8761/eureka/
+    
