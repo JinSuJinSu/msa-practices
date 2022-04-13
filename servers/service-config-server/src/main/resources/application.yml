@@ -25,7 +25,7 @@ spring:
          server:
             encrypt.enabled: true
             git:
-               uri: https://github.com/poscoict-bitacademy/msa-practices-config-repo
+               uri: https://github.com/JinSuJinSu/msa-pracitces-config
                searchPaths: service-emaillist, service-storage, service-gallery, service-guestbook 
 logging:
    pattern:
@@ -45,21 +45,21 @@ logging:
 #
 # configuration based on file-system(native)
 #
-spring:
-   config:
-      activate:
-         on-profile: native   
-   cloud:
-     config:
-       server:
-          encrypt.enabled: true
-          native:
-              searchLocations: file:E:/poscoict/sts-workspace/msa-practices-config-repo/service-emaillist,
-                               file:E:/poscoict/sts-workspace/msa-practices-config-repo/service-storage,
-                               file:E:/poscoict/sts-workspace/msa-practices-config-repo/service-gallery,
-                               file:E:/poscoict/sts-workspace/msa-practices-config-repo/service-guestbook
-logging:
-   pattern:
-      console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
-   level:
-      root: INFO
+#spring:
+#   config:
+#      activate:
+#         on-profile: native   
+#   cloud:
+#     config:
+#       server:
+#          encrypt.enabled: true
+#          native:
+#              searchLocations: file:E:/poscoict/sts-workspace/msa-practices-config-repo/service-emaillist,
+#                               file:E:/poscoict/sts-workspace/msa-practices-config-repo/service-storage,
+#                               file:E:/poscoict/sts-workspace/msa-practices-config-repo/service-gallery,
+#                               file:E:/poscoict/sts-workspace/msa-practices-config-repo/service-guestbook
+#logging:
+#   pattern:
+#      console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+#   level:
+#      root: INFO
